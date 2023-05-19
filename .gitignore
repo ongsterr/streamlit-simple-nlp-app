@@ -1,0 +1,8 @@
+# config
+.vscode
+
+# distribution files
+pipfile.lock
+
+# tutorial files
+tutorial.py

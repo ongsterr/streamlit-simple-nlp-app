@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="NLP Simple Example",
+    page_title="Simple NLP App",
     page_icon=":smile:",
     layout="centered",
     initial_sidebar_state="auto",
@@ -43,7 +43,7 @@ def main():
 
     title_template = """
 	<div style="background-color:black;padding:8px;border-style:solid;border-color:white;border-width:thin;">
-    <h1 style="color:white">NLP Simple Examples</h1>
+    <h1 style="color:white">Simple NLP App</h1>
     </div>
 	"""
 

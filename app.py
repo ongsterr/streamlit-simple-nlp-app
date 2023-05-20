@@ -18,6 +18,12 @@ import matplotlib
 
 matplotlib.use("agg")
 from wordcloud import WordCloud
+import subprocess
+
+
+@st.cache_resource
+def download_en_core_web_sm():
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
 
 
 def generate_wordcloud(text):
@@ -40,6 +46,7 @@ def analyse_text(text):
 
 def main():
     # st.title("NLP Simple Example")
+    download_en_core_web_sm()
 
     title_template = """
 	<div style="background-color:black;padding:8px;border-style:solid;border-color:white;border-width:thin;">

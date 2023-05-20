@@ -11,6 +11,7 @@ from textblob import TextBlob
 import spacy
 from gensim.summarization import summarize
 import neattext as nt
+from deep_translator import GoogleTranslator
 
 import matplotlib.pyplot as plt
 import matplotlib
@@ -65,7 +66,7 @@ def main():
         st.subheader("Text Analysis")
 
         raw_text = st.text_area(
-            "Write something", "Enter a text in English", height=250
+            "Write something", "Enter something in English...", height=250
         )
 
         if st.button("Analyse"):
@@ -137,8 +138,54 @@ def main():
     if choice == "Translation":
         st.subheader("Translation")
 
+        raw_text = st.text_area(
+            "Write something to be translated...",
+            "Text to be translated...",
+        )
+
+        if len(raw_text) < 3:
+            st.warning("Please provide a string with at least 3 characters...")
+
+        translate_option = st.selectbox(
+            "Select translation language",
+            ["Chinese", "English", "German", "Italian", "Russian", "Spanish"],
+        )
+
+        if st.button("Translate"):
+            translate_lkp = {
+                "Chinese": "zh-CN",
+                "English": "en",
+                "German": "de",
+                "Italian": "it",
+                "Russian": "ru",
+                "Spanish": "es",
+            }
+            translate_language = translate_lkp[translate_option]
+            translator = GoogleTranslator(source="auto", target=translate_language)
+            translated_text = translator.translate(raw_text)
+            st.text(f"Translating to {translate_option}...")
+            st.success(translated_text)
+
     if choice == "Sentiment Analysis":
         st.subheader("Sentiment Analysis")
+
+        raw_text = st.text_area("Enter some text to analyse...", "Text to analyse...")
+
+        if st.button("Evaluate"):
+            if len(raw_text) == 0:
+                st.warning("Please enter some text...")
+            else:
+                translator = GoogleTranslator(source="auto", target="en")
+                translated_text = translator.translate(raw_text)
+                blob = TextBlob(str(translated_text))
+                sentiment_result = blob.sentiment
+
+                st.info(
+                    "Sentiment Polarity: {}".format(sentiment_result.polarity)
+                )  # from 1 (positive) to -1 (negative)
+                st.info(
+                    "Sentiment Subjectivity: {}".format(sentiment_result.subjectivity)
+                )  # from 0 (objective) to 1 (subjective)
 
     if choice == "About":
         st.subheader("About")

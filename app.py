@@ -18,7 +18,6 @@ import matplotlib
 
 matplotlib.use("agg")
 from wordcloud import WordCloud
-import subprocess
 
 
 def generate_wordcloud(text):
@@ -29,7 +28,7 @@ def generate_wordcloud(text):
     st.pyplot(fig)
 
 
-@st.cache_data
+@st.cache_resource
 def analyse_text(text):
     nlp = spacy.load("en_core_web_sm")
     doc = nlp(text)

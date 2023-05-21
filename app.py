@@ -28,7 +28,7 @@ def generate_wordcloud(text):
     st.pyplot(fig)
 
 
-@st.cache_resource
+# @st.cache_resource
 def analyse_text(text):
     nlp = spacy.load("en_core_web_sm")
     doc = nlp(text)

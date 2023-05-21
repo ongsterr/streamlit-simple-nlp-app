@@ -3,6 +3,7 @@
 
 # distribution files
 pipfile.lock
+pipfile
 
 # tutorial files
 tutorial.py

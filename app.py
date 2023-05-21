@@ -21,11 +21,6 @@ from wordcloud import WordCloud
 import subprocess
 
 
-@st.cache_resource
-def download_en_core_web_sm():
-    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
-
-
 def generate_wordcloud(text):
     wordcloud = WordCloud().generate(text)
     fig = plt.figure(figsize=(20, 10))
